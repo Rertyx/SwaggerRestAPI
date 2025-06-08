@@ -1,0 +1,18 @@
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: my_postgres_swagger
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "swagger"
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "test"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - swagger-data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+volumes:
+  swagger-data:
